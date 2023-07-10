@@ -1,2 +1,2 @@
 #!/bin/bash
-pytho3 "$PYFILE"
+python3 "$PYFILE"
