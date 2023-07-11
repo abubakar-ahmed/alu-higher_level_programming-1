@@ -12,11 +12,10 @@ def add_arg(argv):
             i += 1
         print("{:d}".format(add))
 
-import sys
-
-if __name__ == "__main__":
+if _name_ == "_main_":
     import sys
-    add_arg(sys.argv)
-    args = sys.argv[1:]  # Exclude the script name itself
-    total = sum(map(int, args))
-    print(total)
+    result = 0
+    for arg in sys.argv:
+        if arg != sys.argv[0]:
+            result += int(arg)
+    print(result)
