@@ -1,18 +1,11 @@
 #!/usr/bin/python3
-def add_arg(argv):
-    n = len(argv) - 1
-    if n == 0:
-        print("{:d}".format(n))
-        return
-    else:
-        i = 1
-        add = 0
-        while i <= n:
-            add += int(argv[i])
-            i += 1
-        print("{:d}".format(add))
+import sys
 
+# Get all command-line arguments excluding the script name
+arguments = sys.argv[1:]
 
-if __name__ == "__main__":
-    import sys
-    add_arg(sys.argv)
+# Convert arguments to integers and calculate the sum
+total = sum(int(arg) for arg in arguments)
+
+# Print the sum
+print(total)
