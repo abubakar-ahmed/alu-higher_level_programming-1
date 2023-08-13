@@ -15,15 +15,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # MySQL server configurations
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    host = "localhost"
-    port = 3306
+    username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+    host, port = "localhost", 3306
 
     # Create the engine and bind it to the Base class
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@{}:{}/{}'.format(username, password, host, port, database),
+        f"mysql+mysqldb://{username}:{password}@{host}:{port}/{database}",
         pool_pre_ping=True
     )
     Base.metadata.create_all(engine)
@@ -39,8 +36,9 @@ if __name__ == "__main__":
     if first_state is None:
         print("Nothing")
     else:
-        print("{}: {}".format(first_state.id, first_state.name))
+        print(f"{first_state.id}: {first_state.name}")
 
     # Close the session
     session.close()
+
 
