@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""script that changes the name of a State object
-from the database hbtn_0e_6_usa
+"""script that deletes all State objects with a
+name containing the letter a from the database
+hbtn_0e_6_usa
 """
 
 import sys
@@ -17,9 +18,11 @@ if __name__ == "__main__":
     session = Session()
     Base.metadata.create_all(engine)
 
-    state = session.query(State).filter(State.id == 2).first()
+    states = session.query(State).filter(State.name.contains('a')).all()
 
-    state.name = "New Mexico"
+    for state in states:
+        session.delete(state)
 
     session.commit()
+
     session.close()
